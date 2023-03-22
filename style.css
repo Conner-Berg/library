@@ -12,9 +12,21 @@ body {
 	height: 100vh;
 }
 
-.add-book,
+button {
+	border: 5px solid #444;
+	background-color: #666;
+	color: #eee;
+	margin: 5px;
+}
+
 .form-input {
 	margin: 5px;
+}
+
+.form {
+	border: 5px solid #444;
+	background-color: #666;
+	display: none;
 }
 
 .book-list {
@@ -25,9 +37,8 @@ body {
 }
 
 .return-book {
-	background-color: lightblue;
-	color: black;
-	border: 5px solid darkblue;
+	border: 5px solid #444;
+	background-color: #666;
 	padding: 5px;
 	margin: 5px;
 	white-space: pre;
