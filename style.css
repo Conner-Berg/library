@@ -43,3 +43,28 @@ button {
 	margin: 5px;
 	white-space: pre;
 }
+
+.btn-container {
+	display: flex;
+	justify-content: center;
+	width: 100%;
+}
+
+.toggle-read {
+	background-color: darkgreen;
+	border: 3px solid rgb(0, 70, 0);
+	margin: 2px;
+	padding: 0;
+	width: 25px;
+	height: 25px;
+	display: block;
+}
+
+.remove-book {
+	background-color: darkred;
+	border: 3px solid rgb(109, 0, 0);
+	margin: 2px;
+	padding: 0;
+	width: 25px;
+	height: 25px;
+}
