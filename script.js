@@ -1,5 +1,6 @@
 let myLibrary = [];
 let totalBooks = 0;
+const addBook = document.querySelector(".add-book");
 const form = document.querySelector(".form");
 const bookList = document.querySelector(".book-list");
 
@@ -45,8 +46,13 @@ function displayBook() {
 	bookList.append(returnBook);
 }
 
+addBook.addEventListener("click", function (event) {
+	form.style.display = "block";
+});
+
 form.addEventListener("submit", function (event) {
 	event.preventDefault();
+	form.style.display = "none";
 	addBookToLibrary();
 	displayBook();
 });
