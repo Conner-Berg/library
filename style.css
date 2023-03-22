@@ -17,6 +17,18 @@ body {
 	margin: 5px;
 }
 
+.book-list {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 100%;
+}
+
 .return-book {
+	background-color: lightblue;
+	color: black;
+	border: 5px solid darkblue;
+	padding: 5px;
+	margin: 5px;
 	white-space: pre;
 }
