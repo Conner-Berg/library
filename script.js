@@ -39,10 +39,26 @@ function addBookToLibrary() {
 function displayBook() {
 	++totalBooks;
 	let lastBook = myLibrary[myLibrary.length - 1];
+
 	let returnBook = document.createElement("div");
 	returnBook.className = `book-${totalBooks}`;
 	returnBook.className = `return-book`;
 	returnBook.textContent = `${lastBook.title}\r\n${lastBook.author}\r\n${lastBook.pages}\r\n${lastBook.read}`;
+
+	const btnContainer = document.createElement("div");
+	btnContainer.className = "btn-container";
+	returnBook.append(btnContainer);
+
+	const toggleRead = document.createElement("button");
+	toggleRead.className = "toggle-read";
+	toggleRead.textContent = "✓";
+	btnContainer.append(toggleRead);
+
+	const removeBook = document.createElement("button");
+	removeBook.className = "remove-book";
+	removeBook.textContent = "X";
+	btnContainer.append(removeBook);
+
 	bookList.append(returnBook);
 }
 
