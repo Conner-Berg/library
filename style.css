@@ -16,3 +16,7 @@ body {
 .form-input {
 	margin: 5px;
 }
+
+.return-book {
+	white-space: pre;
+}
