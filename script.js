@@ -43,7 +43,7 @@ function displayBook() {
 	let returnBook = document.createElement("div");
 	returnBook.className = `book-${totalBooks}`;
 	returnBook.className = `return-book`;
-	returnBook.textContent = `${lastBook.title}\r\n${lastBook.author}\r\n${lastBook.pages}\r\n${lastBook.read}`;
+	returnBook.textContent = `${lastBook.title}\r\n${lastBook.author}\r\n${lastBook.pages}`;
 
 	const btnContainer = document.createElement("div");
 	btnContainer.className = "btn-container";
@@ -81,5 +81,13 @@ bookList.addEventListener("click", function toggleReadBtn(event) {
 		return target.classList.remove("toggle-read-yes");
 	} else if (target.classList.contains("toggle-read")) {
 		return target.classList.add("toggle-read-yes");
+	}
+});
+
+bookList.addEventListener("click", function useRemoveBtn(event) {
+	let target = event.target;
+	let el = target.closest(".return-book");
+	if (target.classList.contains("remove-book")) {
+		return el.remove();
 	}
 });
