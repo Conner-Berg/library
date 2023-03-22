@@ -52,6 +52,8 @@ function displayBook() {
 	const toggleRead = document.createElement("button");
 	toggleRead.className = "toggle-read";
 	toggleRead.textContent = "✓";
+	if (document.querySelector(".read").checked)
+		toggleRead.classList.add("toggle-read-yes");
 	btnContainer.append(toggleRead);
 
 	const removeBook = document.createElement("button");
@@ -62,13 +64,22 @@ function displayBook() {
 	bookList.append(returnBook);
 }
 
-addBook.addEventListener("click", function (event) {
+addBook.addEventListener("click", () => {
 	form.style.display = "block";
 });
 
-form.addEventListener("submit", function (event) {
+form.addEventListener("submit", (event) => {
 	event.preventDefault();
 	form.style.display = "none";
 	addBookToLibrary();
 	displayBook();
+});
+
+bookList.addEventListener("click", function toggleReadBtn(event) {
+	let target = event.target;
+	if (target.classList.contains("toggle-read-yes")) {
+		return target.classList.remove("toggle-read-yes");
+	} else if (target.classList.contains("toggle-read")) {
+		return target.classList.add("toggle-read-yes");
+	}
 });
