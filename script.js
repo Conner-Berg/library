@@ -1,14 +1,16 @@
 let myLibrary = [];
 let totalBooks = 0;
+let bookKey;
 const addBook = document.querySelector(".add-book");
 const form = document.querySelector(".form");
 const bookList = document.querySelector(".book-list");
 
-function Book(title, author, pages, read) {
+function Book(title, author, pages, read, bookKey) {
 	this.title = title;
 	this.author = author;
 	this.pages = pages;
 	this.read = read;
+	this.bookKey = bookKey;
 }
 
 Book.prototype.info = function () {
@@ -32,17 +34,16 @@ function addBookToLibrary() {
 	let read = document.querySelector(".read").checked
 		? "Read"
 		: "Not Read Yet";
-	let newBook = new Book(title, author, pages, read);
+	let newBook = new Book(title, author, pages, read, bookKey);
 	myLibrary.push(newBook);
 }
 
 function displayBook() {
-	++totalBooks;
 	let lastBook = myLibrary[myLibrary.length - 1];
 
 	let returnBook = document.createElement("div");
-	returnBook.className = `book-${totalBooks}`;
-	returnBook.className = `return-book`;
+	returnBook.classList.add(bookKey);
+	returnBook.classList.add("return-book");
 	returnBook.textContent = `${lastBook.title}\r\n${lastBook.author}\r\n${lastBook.pages}`;
 
 	const btnContainer = document.createElement("div");
@@ -64,30 +65,40 @@ function displayBook() {
 	bookList.append(returnBook);
 }
 
-addBook.addEventListener("click", () => {
+function useAddBookBtn() {
 	form.style.display = "block";
-});
+}
 
-form.addEventListener("submit", (event) => {
+function useSubmitBtn(event) {
 	event.preventDefault();
 	form.style.display = "none";
+	++totalBooks;
+	bookKey = `book-key-${totalBooks}`;
 	addBookToLibrary();
 	displayBook();
-});
+}
 
-bookList.addEventListener("click", function toggleReadBtn(event) {
+function toggleReadBtn(event) {
 	let target = event.target;
 	if (target.classList.contains("toggle-read-yes")) {
 		return target.classList.remove("toggle-read-yes");
 	} else if (target.classList.contains("toggle-read")) {
 		return target.classList.add("toggle-read-yes");
 	}
-});
+}
 
-bookList.addEventListener("click", function useRemoveBtn(event) {
+function useRemoveBtn(event) {
 	let target = event.target;
 	let el = target.closest(".return-book");
 	if (target.classList.contains("remove-book")) {
 		return el.remove();
 	}
-});
+}
+
+addBook.addEventListener("click", useAddBookBtn);
+
+form.addEventListener("submit", useSubmitBtn);
+
+bookList.addEventListener("click", toggleReadBtn);
+
+bookList.addEventListener("click", useRemoveBtn);
