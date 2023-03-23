@@ -80,19 +80,32 @@ function useSubmitBtn(event) {
 }
 
 function toggleReadBtn(event) {
-	let target = event.target;
-	if (target.classList.contains("toggle-read-yes")) {
-		return target.classList.remove("toggle-read-yes");
-	} else if (target.classList.contains("toggle-read")) {
-		return target.classList.add("toggle-read-yes");
+	let check = event.target.classList;
+	if (check.contains("toggle-read")) {
+		swapLibraryRead(event);
+		if (check.contains("toggle-read-yes")) {
+			return check.remove("toggle-read-yes");
+		}
+		return check.add("toggle-read-yes");
+	}
+}
+
+function swapLibraryRead(event) {
+	let el = event.target.closest(".return-book").classList;
+	for (let i = 0; i < myLibrary.length; i++) {
+		if (el.contains(`${myLibrary[i].bookKey}`)) {
+			myLibrary[i].read === "Read"
+				? (myLibrary[i].read = "Not Read Yet")
+				: (myLibrary[i].read = "Read");
+		}
 	}
 }
 
 function useRemoveBtn(event) {
 	if (event.target.classList.contains("remove-book")) {
-		let el = event.target.closest(".return-book");
+		let el = event.target.closest(".return-book").classList;
 		for (let i = 0; i < myLibrary.length; i++) {
-			if (el.classList.contains(`${myLibrary[i].bookKey}`)) {
+			if (el.contains(`${myLibrary[i].bookKey}`)) {
 				myLibrary.splice(i, 1);
 			}
 		}
