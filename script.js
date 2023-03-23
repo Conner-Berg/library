@@ -91,9 +91,9 @@ function toggleReadBtn(event) {
 }
 
 function swapLibraryRead(event) {
-	let el = event.target.closest(".return-book").classList;
+	let el = event.target.closest(".return-book");
 	for (let i = 0; i < myLibrary.length; i++) {
-		if (el.contains(`${myLibrary[i].bookKey}`)) {
+		if (el.classList.contains(`${myLibrary[i].bookKey}`)) {
 			myLibrary[i].read === "Read"
 				? (myLibrary[i].read = "Not Read Yet")
 				: (myLibrary[i].read = "Read");
@@ -103,9 +103,9 @@ function swapLibraryRead(event) {
 
 function useRemoveBtn(event) {
 	if (event.target.classList.contains("remove-book")) {
-		let el = event.target.closest(".return-book").classList;
+		let el = event.target.closest(".return-book");
 		for (let i = 0; i < myLibrary.length; i++) {
-			if (el.contains(`${myLibrary[i].bookKey}`)) {
+			if (el.classList.contains(`${myLibrary[i].bookKey}`)) {
 				myLibrary.splice(i, 1);
 			}
 		}
