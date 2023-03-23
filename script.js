@@ -36,6 +36,7 @@ function addBookToLibrary() {
 		: "Not Read Yet";
 	let newBook = new Book(title, author, pages, read, bookKey);
 	myLibrary.push(newBook);
+	console.log(myLibrary);
 }
 
 function displayBook() {
@@ -88,9 +89,13 @@ function toggleReadBtn(event) {
 }
 
 function useRemoveBtn(event) {
-	let target = event.target;
-	let el = target.closest(".return-book");
-	if (target.classList.contains("remove-book")) {
+	if (event.target.classList.contains("remove-book")) {
+		let el = event.target.closest(".return-book");
+		for (let i = 0; i < myLibrary.length; i++) {
+			if (el.classList.contains(`${myLibrary[i].bookKey}`)) {
+				myLibrary.splice(i, 1);
+			}
+		}
 		return el.remove();
 	}
 }
